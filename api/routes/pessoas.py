@@ -1,5 +1,7 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi_pagination import Page
+from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
 from db import get_db
 
@@ -10,12 +12,12 @@ from schemas.pessoas import PessoaBase, PessoaCreate, PessoaDetail, PessoaUpdate
 router = APIRouter()
 
 
-@router.get("/", response_model=List[PessoaBase])
+@router.get("/", response_model=Page[PessoaBase])
 async def get_pessoas(db: Session = Depends(get_db)):
     """
     Get all pessoas from database
     """
-    return db.query(Pessoa).all()
+    return paginate(db, db.query(Pessoa))
 
 
 @router.get("/{id_pessoa}", response_model=PessoaDetail)
