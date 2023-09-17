@@ -24,13 +24,4 @@ app.add_middleware(
 )
 
 
-@app.on_event("startup")
-def startup():
-    try:
-        db.get_db()
-    except Exception as e:
-        print("Database connection failed")
-        raise e
-
-
 app.add_middleware(DBSessionMiddleware, db_url=DATABASE_URL)
