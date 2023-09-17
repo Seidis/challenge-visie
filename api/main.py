@@ -3,6 +3,7 @@ import db
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_sqlalchemy import DBSessionMiddleware
+from router import router
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -25,3 +26,5 @@ app.add_middleware(
 
 
 app.add_middleware(DBSessionMiddleware, db_url=DATABASE_URL)
+
+app.include_router(router)

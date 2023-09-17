@@ -9,10 +9,7 @@ load_dotenv()
 DATABASE_URL = os.environ["DATABASE_URL"]
 
 
-engine = sqlalchemy.create_engine(
-    DATABASE_URL,
-    echo=True,
-)
+engine = sqlalchemy.create_engine(DATABASE_URL)
 
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
