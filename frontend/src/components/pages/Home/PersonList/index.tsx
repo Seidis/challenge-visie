@@ -67,6 +67,7 @@ export default function PersonList({
               <Button
                 variant="outline"
                 className="border-blue-300 hover:bg-blue-100"
+                onClick={() => navigateTo(`/pessoas/${person.id_pessoa}`)}
               >
                 <MdReadMore size={25} className="text-blue-400" />
               </Button>
@@ -75,6 +76,7 @@ export default function PersonList({
               <Button
                 variant="outline"
                 className="border-orange-300 hover:bg-orange-100"
+                onClick={() => navigateTo(`/pessoas/${person.id_pessoa}/edit`)}
               >
                 <MdEdit className="text-orange-400" />
               </Button>

@@ -5,8 +5,12 @@ import { PersonListType } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { IoPersonAddSharp } from "react-icons/io5";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+  const navigateTo = (path: string) => navigate(path);
+
   const [persons, setPersons] = useState<PersonListType>();
 
   function getPersons(page: number = 1, size: number = 10) {
@@ -22,11 +26,12 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       <main className="w-8/12">
-        <div className="space-x-2 flex justify-end pt-2 w-full">
+        <div className="space-x-2 flex justify-end py-2 w-full">
           <Button
             variant="outline"
             size="sm"
             className="border-green-300  text-green-300 hover:text-green-300 hover:bg-green-100"
+            onClick={() => navigateTo("/pessoas/adicionar")}
           >
             <IoPersonAddSharp size={20} className="mr-2 text-green-300" />
             Adicionar pessoa
