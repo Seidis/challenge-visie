@@ -32,7 +32,7 @@ export default function Home() {
             Adicionar pessoa
           </Button>
         </div>
-        <PersonList personsList={persons} />
+        <PersonList personsList={persons} setPersonsList={setPersons} />
         <div
           className={`flex justify-between ${
             persons ? "block" : "hidden"

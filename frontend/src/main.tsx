@@ -9,11 +9,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
     <ToastContainer
       position="bottom-right"
-      autoClose={5000}
+      autoClose={3000}
       hideProgressBar={false}
       newestOnTop={false}
       closeOnClick={true}
       rtl={false}
+      pauseOnFocusLoss={false}
     />
     <AppRouter />
   </>
