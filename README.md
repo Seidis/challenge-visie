@@ -21,3 +21,9 @@ Caso queira executar as aplicações sem o Docker, utilize o seguinte tutorial:
    1. Acesse a pasta frontend: `cd frontend`
    2. Instale as dependências do frontend: `npm install`
    3. Inicie o servidor local: `npm run dev`
+
+## Uso
+
+Para acessar a aplicação web, acesse o link `http://localhost:5173` caso tenha iniciado localmente ou `http://localhost:3000` se iniciou pelo Docker.
+
+Para acessar o Swagger da api, acesse o link `http://localhost:8000`.
