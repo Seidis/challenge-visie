@@ -12,11 +12,19 @@ export default function Home() {
   const navigateTo = (path: string) => navigate(path);
 
   const [persons, setPersons] = useState<PersonListType>();
+  const [loading, setLoading] = useState(false);
 
   function getPersons(page: number = 1, size: number = 10) {
-    api.get(`/pessoas?page=${page}&size=${size}`).then((response) => {
-      setPersons(response.data);
-    });
+    setLoading(true);
+
+    api
+      .get(`/pessoas?page=${page}&size=${size}`)
+      .then((response) => {
+        setPersons(response.data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   useEffect(() => {
@@ -70,6 +78,15 @@ export default function Home() {
           </div>
         </div>
       </main>
+      {loading ? (
+        <div
+          className={
+            "fixed inset-0 bg-gray-800 bg-opacity-75 z-50 flex items-center justify-center"
+          }
+        >
+          <div className="spinner"></div>
+        </div>
+      ) : null}
     </div>
   );
 }
