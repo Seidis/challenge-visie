@@ -32,15 +32,33 @@ export default function PersonList({
     return fullName.split(" ")[0];
   }
 
+  function getPersons() {
+    api
+      .get(
+        `/pessoas?page=${personsList ? personsList?.page - 1 : 1}&size=${10}`
+      )
+      .then((response) => {
+        setPersonsList(response.data);
+      });
+  }
+
   async function deletePerson(id: number) {
     if (!confirm("Tem certeza que deseja excluir esta pessoa?")) return;
     try {
       await api.delete(`/pessoas/${id}`);
-      personsList?.items.splice(
-        personsList?.items.findIndex((person) => person.id_pessoa === id),
-        1
-      );
-      setPersonsList({ ...personsList });
+      if (personsList) {
+        const updatedItems = personsList.items.filter(
+          (person) => person.id_pessoa !== id
+        );
+        setPersonsList({
+          ...personsList,
+          items: updatedItems,
+        });
+
+        if (updatedItems.length === 0) {
+          getPersons();
+        }
+      }
       successToast("Pessoa excluída com sucesso!");
     } catch (error) {
       errorToast("Erro ao excluir pessoa!");

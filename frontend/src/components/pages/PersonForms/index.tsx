@@ -85,7 +85,6 @@ export default function PersonForms({ edit = false }: { edit?: boolean }) {
     if (id_pessoa) {
       getPerson(id_pessoa);
     }
-    console.log(edit);
   }, []);
 
   return (

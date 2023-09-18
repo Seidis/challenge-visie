@@ -55,6 +55,9 @@ export default function Home() {
               <IoIosArrowBack size={20} className="mr-2" />
               Anterior
             </Button>
+            <span className="text-gray-500">
+              {persons ? persons.page : 0} de {persons ? persons.pages : 0}
+            </span>
             <Button
               variant="outline"
               size="sm"
